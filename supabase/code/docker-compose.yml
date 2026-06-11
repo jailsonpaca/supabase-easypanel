@@ -319,10 +319,48 @@ services:
       SUPABASE_DB_URL: postgresql://postgres:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
       # TODO: Allow configuring VERIFY_JWT per function. This PR might help: https://github.com/supabase/cli/pull/786
       VERIFY_JWT: "${FUNCTIONS_VERIFY_JWT}"
-      # Edge Function secrets (definir na aba Environment do EasyPanel)
+      # Edge Function secrets — definir no .env / aba Environment do Easypanel
+      # URLs públicas (links em e-mails, OAuth redirect, invoke edge→edge)
+      PUBLIC_APP_URL: ${PUBLIC_APP_URL:-}
+      APP_URL: ${APP_URL:-}
+      SITE_URL: ${SITE_URL:-}
+      PUBLIC_SUPABASE_FUNCTIONS_URL: ${SUPABASE_PUBLIC_URL:-}
+      # E-mail (Plunk API + cadeia de fallback SMTP/Resend)
+      PLUNK_API_KEY: ${PLUNK_API_KEY:-}
+      PLUNK_API_URL: ${PLUNK_API_URL:-}
+      SEND_EMAIL_HOOK_SECRET: ${SEND_EMAIL_HOOK_SECRET:-}
+      EMAIL_UNSUBSCRIBE_SECRET: ${EMAIL_UNSUBSCRIBE_SECRET:-}
+      EMAIL_SUPPRESSION_WEBHOOK_SECRET: ${EMAIL_SUPPRESSION_WEBHOOK_SECRET:-}
+      EMAIL_PREVIEW_SECRET: ${EMAIL_PREVIEW_SECRET:-}
+      EMAIL_FALLBACK_CHAIN_ENABLED: ${EMAIL_FALLBACK_CHAIN_ENABLED:-true}
+      EMAIL_FALLBACK_SMTP_ENABLED: ${EMAIL_FALLBACK_SMTP_ENABLED:-false}
+      EMAIL_FALLBACK_RESEND_ENABLED: ${EMAIL_FALLBACK_RESEND_ENABLED:-false}
+      PLUNK_SMTP_HOST: ${PLUNK_SMTP_HOST:-}
+      PLUNK_SMTP_PORT: ${PLUNK_SMTP_PORT:-587}
+      PLUNK_SMTP_USER: ${PLUNK_SMTP_USER:-}
+      PLUNK_SMTP_PASS: ${PLUNK_SMTP_PASS:-}
+      PLUNK_SMTP_FROM: ${PLUNK_SMTP_FROM:-}
+      RESEND_API_KEY: ${RESEND_API_KEY:-}
+      RESEND_FROM_EMAIL: ${RESEND_FROM_EMAIL:-}
+      RESEND_FROM_NAME: ${RESEND_FROM_NAME:-}
+      RESEND_WEBHOOK_SECRET: ${RESEND_WEBHOOK_SECRET:-}
+      # Google OAuth (Calendar / login)
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+      OAUTH_STATE_SECRET: ${OAUTH_STATE_SECRET:-}
+      # Integrações
       EVOLUTION_GLOBAL_API_KEY: ${EVOLUTION_GLOBAL_API_KEY:-}
       EVOLUTION_WEBHOOK_SECRET: ${EVOLUTION_WEBHOOK_SECRET:-}
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL_MAP_JSON: ${GEMINI_MODEL_MAP_JSON:-}
+      GEMINI_TRANSCRIBE_MODEL: ${GEMINI_TRANSCRIBE_MODEL:-}
+      GEMINI_VISION_MODEL: ${GEMINI_VISION_MODEL:-}
+      META_APP_SECRET: ${META_APP_SECRET:-}
+      DOCINN_ADMIN_API_KEY: ${DOCINN_ADMIN_API_KEY:-}
+      DOCINN_BASE_URL: ${DOCINN_BASE_URL:-}
+      HTML_TO_PDF_URL: ${HTML_TO_PDF_URL:-}
+      HTML_TO_PDF_API_TOKEN: ${HTML_TO_PDF_API_TOKEN:-}
+      ENVIRONMENT: ${ENVIRONMENT:-production}
     command: [ "start", "--main-service", "/home/deno/functions/main" ]
 
   # analytics (Logflare) — desabilitado para reduzir CPU na VPS compartilhada.
